@@ -1,0 +1,26 @@
+ -- Nas mesmas buscas do exercício anterior, trazer apenas o número do resultado usando o contador.
+
+db.biblioteca.find({
+  status: { $ne: "published" },
+  pageCount: { $lt: 300 }
+}).count();
+
+db.biblioteca.find(
+  { title: { $regex: /MongoDB|SQL Server/i }},
+  { title: true }
+).count();
+
+db.biblioteca.find(
+    {
+        isbn: { $regex: "^18" }
+    }
+).count();
+
+ db.biblioteca.find(
+  {
+    longDescription: { $regex: /Java|Mobile/i }
+  },
+  {
+    longDescription: true
+  }
+).count();

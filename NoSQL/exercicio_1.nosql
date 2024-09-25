@@ -1,0 +1,34 @@
+--  Consulta de quantos livros não estão com o status publicado e pageCount menor que 300;
+
+db.biblioteca.find({
+  status: { $ne: "published" },
+  pageCount: { $lt: 300 }
+});
+
+-- Consulta de livros que contém as palavras MongoDB e SQL Server no título
+
+db.biblioteca.find(
+  { title: { $regex: /MongoDB|SQL Server/i } },
+  { title: true }
+);
+
+-- Consulta com expressão regular onde ISBN começa com 18;
+
+db.biblioteca.find(
+    {
+        isbn: { $regex: "^18" }
+    }
+)
+
+-- Usando Expressão Regular, buscar livros que contém a palavra JAVA ou Mobile na descrição do livro (LongDescription), lembrando que deve trazer todas as palavras independente de começa com maiúsculo ou minúsculo.
+
+db.biblioteca.find(
+    {
+        longDescription: { 
+            $regex: /Java|Mobile/i 
+        }
+    },
+    {
+        longDescription: true
+    }
+);
